@@ -67,7 +67,9 @@ class War:
   
         saxon_status = random_saxon.receive_damage(random_viking.strength)
         if random_saxon.health <= 0:
-            self.saxon_army = [saxon for saxon in self.saxon_army if saxon not in self.saxon_army]
+            # self.saxon_army = [saxon for saxon in self.saxon_army if saxon not in self.saxon_army]
+            #refactoring with filter
+            self.saxon_army = list(filter(lambda saxon: saxon if saxon not in self.saxon_army else False, self.saxon_army  ))
         return saxon_status
     
     def saxon_attack(self):
@@ -76,7 +78,9 @@ class War:
 
         viking_status = random_viking.receive_damage(random_saxon.strength)
         if random_viking.health <=0:
-            self.viking_army = [viking for viking in self.viking_army if viking not in self.viking_army]
+            # self.viking_army = [viking for viking in self.viking_army if viking not in self.viking_army]
+            #refactoring with filter
+            self.viking_army = list(filter(lambda viking: viking if viking not in self.viking_army else False, self.viking_army  ))
         return viking_status
 
     def show_status(self):
